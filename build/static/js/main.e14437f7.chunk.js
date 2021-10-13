@@ -1,0 +1,2 @@
+(this["webpackJsonptodo-app-with-typescript"]=this["webpackJsonptodo-app-with-typescript"]||[]).push([[0],{10:function(t,e,c){"use strict";c.r(e);var n=c(3),o=(c(8),c(0));function s(){return Object(o.jsx)("div",{children:Object(o.jsx)("h1",{className:"text-xl",children:"Todo"})})}var i=document.getElementById("root");Object(n.render)(Object(o.jsx)(s,{}),i)},8:function(t,e,c){}},[[10,1,2]]]);
+//# sourceMappingURL=main.e14437f7.chunk.js.map
