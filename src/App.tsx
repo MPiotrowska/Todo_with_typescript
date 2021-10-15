@@ -1,11 +1,13 @@
-
-import './styles.css'
+import './styles.css';
+import { Todos } from './components/Todos';
+import { TodoProvider } from './context/TodoContext';
+import { AddTodo } from './components/AddTodo';
 
 export default function App() {
   return (
-    <div>
-   
-      <h1 className='text-xl'>Todo8</h1>
-    </div>
+    <TodoProvider>
+      <AddTodo />
+      <Todos />
+    </TodoProvider>
   );
 }

@@ -1,25 +1,66 @@
-import { useReducer, createContext } from "react";
-import { ContextModel, CounterAction, CounterState } from "../interface";
+import React, { createContext, ReactNode, useReducer } from 'react';
 
-
-const defaultState:CounterState = {
-    todos: []
+const initialState: TodoState = {
+  todos: []
+};
+export interface TodoItem {
+  id: string;
+  title: string;
+  active: boolean;
 }
 
-const reducer =(state: CounterState, action: CounterAction):CounterState => {
-switch(action.type) {
-    default :
-    return state;
-}
-
+type TodoState = {
+  todos: TodoItem[];
 };
 
-export const Context = createContext({} as ContextModel);
+export type TodoAction =
+  | { type: 'ADD'; payload: TodoItem }
+  | { type: 'DELETE'; payload: string };
 
-export const Provider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(reducer, defaultState);
+type TodoDispatch = (action: TodoAction) => void;
 
+type TodoProviderProps = { children: ReactNode };
+
+const TodoStateContext = createContext<
+  { state: TodoState; dispatch: TodoDispatch } | undefined
+>(undefined);
+
+function todoReducer(state: TodoState, action: TodoAction): TodoState {
+  switch (action.type) {
+    case 'ADD':
+      return {
+        ...state,
+        todos: [...state.todos, action.payload]
+      };
+
+    case 'DELETE':
+      return {
+        ...state,
+        todos: state.todos.filter((item) => item.id !== action.payload)
+      };
+
+    default:
+      return state;
+  }
+}
+
+function TodoProvider({ children }: TodoProviderProps) {
+  const [state, dispatch] = useReducer(todoReducer, initialState);
+
+  const value = { state, dispatch };
   return (
-    <Context.Provider value={{ state, dispatch }}>{children}</Context.Provider>
+    <TodoStateContext.Provider value={value}>
+      {children}
+    </TodoStateContext.Provider>
   );
-};
+}
+
+function useTodo() {
+  const context = React.useContext(TodoStateContext);
+  if (context === undefined) {
+    throw new Error('useTodo must be used within a TodoProvider');
+  }
+  return context;
+}
+
+export { TodoProvider, useTodo, TodoStateContext };

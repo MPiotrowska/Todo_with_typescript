@@ -1,15 +1,14 @@
-import { useContext} from 'react'
-import { Context as TodoContext } from "../context/TodoContext";
+import { useTodo } from '../context/TodoContext';
 
+export const Todos = () => {
+  const {
+    state: { todos },
+    dispatch
+  } = useTodo();
 
-export const Todos =() => {
-const {
-    state: {todos}
-}= useContext(TodoContext)
-
-return todos.length > 0 ? (
+  return todos.length > 0 ? (
     <ul>
-      {todos.map((item) => (
+      {todos.map((item: any) => (
         <li key={item.id}>{item.title}</li>
       ))}
     </ul>
