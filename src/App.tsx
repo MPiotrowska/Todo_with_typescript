@@ -1,13 +1,10 @@
-import './styles.css';
-import { Todos } from './components/Todos';
 import { TodoProvider } from './context/TodoContext';
-import { AddTodo } from './components/AddTodo';
+import { TodoApp } from './components/TodoApp';
 
 export default function App() {
   return (
     <TodoProvider>
-      <AddTodo />
-      <Todos />
+      <TodoApp />
     </TodoProvider>
   );
 }

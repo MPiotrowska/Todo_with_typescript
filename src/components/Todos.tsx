@@ -17,8 +17,7 @@ export const Todos = () => {
     <ul>
       {todos.map((item: any) => (
         <li key={item.id}>
-          {item.title}-
-          <button onClick={() => deleteHandler(item.id)}>Delete</button>
+          {item.title}-<button onClick={() => deleteHandler(item.id)}>x</button>
         </li>
       ))}
     </ul>
