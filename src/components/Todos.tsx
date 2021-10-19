@@ -1,4 +1,9 @@
-import { useTodo } from '../context/TodoContext';
+import { TodoAction, useTodo } from '../context/TodoContext';
+
+export const deleteTodo = (id: string): TodoAction => ({
+  type: 'DELETE',
+  payload: id
+});
 
 export const Todos = () => {
   const {
@@ -6,10 +11,15 @@ export const Todos = () => {
     dispatch
   } = useTodo();
 
+  const deleteHandler = (id: string) => dispatch(deleteTodo(id));
+
   return todos.length > 0 ? (
     <ul>
       {todos.map((item: any) => (
-        <li key={item.id}>{item.title}</li>
+        <li key={item.id}>
+          {item.title}-
+          <button onClick={() => deleteHandler(item.id)}>Delete</button>
+        </li>
       ))}
     </ul>
   ) : (

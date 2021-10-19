@@ -1,14 +1,9 @@
-import { FormEvent, useContext, useRef, useState } from 'react';
-import { TodoAction, TodoItem, useTodo } from '../context/TodoContext';
+import { FormEvent, useState } from 'react';
+import { TodoItem, useTodo } from '../context/TodoContext';
 
 export const addTodo = (todo: TodoItem): any => ({
   type: 'ADD',
   payload: todo
-});
-
-export const deleteTodo = (id: string): TodoAction => ({
-  type: 'DELETE',
-  payload: id
 });
 
 export const AddTodo = () => {
@@ -43,9 +38,3 @@ export const AddTodo = () => {
     </form>
   );
 };
-function TodoContext(TodoContext: any): {
-  state: { todos: any };
-  dispatch: any;
-} {
-  throw new Error('Function not implemented.');
-}
