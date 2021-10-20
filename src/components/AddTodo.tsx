@@ -35,13 +35,14 @@ export const AddTodo = () => {
   return (
     <form onSubmit={submitHandler}>
       <input
-        className=" rounded border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+        className=" h-7 bg-indigo-900 border border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
         type="text"
         value={input}
         onChange={handleChange}
+        placeholder="Add to do"
       />
       <button
-        className="text-white rounded bg-purple-500 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 ml-4 w-12 "
+        className="text-white bg-purple-500 hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 h-7 w-12 "
         type="submit"
       >
         Add
